@@ -5,7 +5,7 @@ package it.uniroma3.diadia.giocatore;
  * imposta i Cfu iniziali e gestice la borsa del giocatore
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.A
+ * @version versione.B
  */
 public class Giocatore {
 
@@ -48,6 +48,18 @@ public class Giocatore {
 	 */
 	public Borsa GetBorsa() {
 		return this.borsa;
+	}
+	
+	@Override
+	public String toString() {
+		String returnString;
+		returnString = "GIOCATORE\n\ncfu rimanenti: " + this.cfu + "\n>>>>>BORSA\n" + GetBorsa().getDescrizione();
+		return returnString;
+		
+	}
+	
+	public String getDescrizione() {
+		return this.toString();
 	}
 
 }

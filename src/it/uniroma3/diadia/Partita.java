@@ -9,7 +9,7 @@ import it.uniroma3.diadia.giocatore.Giocatore;
  *
  * @author docente di POO/ matricole "610199" - "610020"
  * @see Stanza
- * @version versione.A
+ * @version versione.B
  */
 
 public class Partita {
@@ -72,5 +72,9 @@ public class Partita {
 	 */
 	public void setFinita() {
 		this.finita = true;
+	}
+	
+	public boolean giocatoreIsVivo() {
+		return this.giocatore.getCfu()!=0;
 	}
 }

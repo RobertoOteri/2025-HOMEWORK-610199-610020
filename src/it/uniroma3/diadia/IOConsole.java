@@ -7,11 +7,12 @@ import java.util.Scanner;
  * programma
  * 
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.A
+ * @version versione.B
  */
 
-public class IOConsole {
+public class IOConsole implements IO {
 
+	@Override
 	/**
 	 * Metodo che si occupa di stampare a video una stringa
 	 * 
@@ -21,7 +22,8 @@ public class IOConsole {
 	public void mostraMessaggio(String msg) {
 		System.out.println(msg);
 	}
-
+	
+	@Override
 	/**
 	 * Metodo che si occupa di scannerizzare un comando inserito dall'utente
 	 * 

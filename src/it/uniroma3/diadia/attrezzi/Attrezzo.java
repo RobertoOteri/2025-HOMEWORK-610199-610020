@@ -8,7 +8,7 @@ import it.uniroma3.diadia.ambienti.Stanza;
  *
  * @author docente di POO/ matricole "610199" - "610020"
  * @see Stanza
- * @version versione.A
+ * @version versione.B
  */
 public class Attrezzo {
 

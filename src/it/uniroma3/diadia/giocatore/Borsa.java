@@ -8,7 +8,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * borsa
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.A
+ * @version versione.B
  */
 
 public class Borsa {

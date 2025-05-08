@@ -7,7 +7,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * trova il giocatore (stanza Corrente) e imposta la stanza Vincente
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.A
+ * @version versione.B
  */
 
 public class Labirinto {
