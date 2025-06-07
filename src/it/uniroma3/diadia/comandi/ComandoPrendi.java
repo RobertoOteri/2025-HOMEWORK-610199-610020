@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.ConfigurazioniIniziali;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
@@ -8,20 +9,15 @@ import it.uniroma3.diadia.Partita;
  * Classe che gestisce il comandoPrendi
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
-public class ComandoPrendi implements Comando {
+public class ComandoPrendi extends AbstractComando{
 	
-	private IO io;
-	private String nomeAttrezzoDaPrendere;
+	private static final String nome = ConfigurazioniIniziali.getNomeComandoPrendi();
 	
-	@Override
-	public void setIoConsole(IO io) {
-		this.io = io;
-	}
-	@Override
-	public void setParametro(String parametro) {
-		this.nomeAttrezzoDaPrendere = parametro;
+	
+	public ComandoPrendi() {
+		super.setNome(nome);
 	}
 	
 	@Override
@@ -33,30 +29,19 @@ public class ComandoPrendi implements Comando {
 	 * @param Partita
 	 */
 	public void esegui(Partita partita) {
-		if(!partita.getLabirinto().getStanzaCorrente().hasAttrezzo(this.nomeAttrezzoDaPrendere)) {
+		if(!partita.getLabirinto().getStanzaCorrente().hasAttrezzo(super.getParametro())) {
 			String returnString;
-			returnString = "Non c'è " + this.nomeAttrezzoDaPrendere + " nella stanza in cui ti trovi al momento!!\n";
-			this.io.mostraMessaggio(returnString);
+			returnString = "Non c'è " + super.getParametro() + " nella stanza in cui ti trovi al momento!!\n";
+			super.getIoConsole().mostraMessaggio(returnString);
 		}else {
-			Attrezzo attrezzoDaPrendere = partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzoDaPrendere);
+			Attrezzo attrezzoDaPrendere = partita.getLabirinto().getStanzaCorrente().getAttrezzo(super.getParametro());
 			if(partita.getGiocatore().GetBorsa().addAttrezzo(attrezzoDaPrendere) && 
 					partita.getLabirinto().getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere)) {
-				this.io.mostraMessaggio("Attrezzo aggiunto correttamente alla borsa!!\n");
+				super.getIoConsole().mostraMessaggio("Attrezzo aggiunto correttamente alla borsa!!\n");
 			}else {
-				this.io.mostraMessaggio("Non è stato possibile aggiungere l'attrezzo alla borsa!!\n");
+				super.getIoConsole().mostraMessaggio("Non è stato possibile aggiungere l'attrezzo alla borsa!!\n");
 			}
 		}
 	}
-	
-	@Override
-	public String getNome() {
-		return "prendi";
-	}
-	
-	@Override
-	public String getParametro() {
-		return this.nomeAttrezzoDaPrendere;
-	}
-	
 
 }

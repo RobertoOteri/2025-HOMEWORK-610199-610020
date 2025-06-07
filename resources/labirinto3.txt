@@ -1,0 +1,16 @@
+Stanze: Atrio, Corridoio, Biblioteca, Cucina, Giardino, Magazzino
+Inizio: Atrio
+Vincente: Biblioteca
+Buie: Bagni candela
+Bloccate: Laboratorio est chiave
+Magiche: Torre
+Maghi: candela 2 Atrio
+Cani: chiave 2 osso Giardino
+Streghe: Torre
+Attrezzi: mappa 1 Corridoio, coltello 2 Cucina, osso 3 Magazzino
+Uscite: Atrio est Corridoio, Corridoio ovest Atrio, Corridoio nord Laboratorio
+Uscite: Laboratorio sud Corridoio, Corridoio sud Bagni, Bagni nord Corridoio
+Uscite: Laboratorio est Biblioteca, Biblioteca ovest Laboratorio, Bagni est Giardino
+Uscite: Giardino ovest Bagni, Giardino sud Cucina, Cucina nord Giardino
+Uscite: Magazzino nord Giardino, Giardino sud Magazzino, Torre sud Laboratorio
+Uscite: Laboratorio nord Torre

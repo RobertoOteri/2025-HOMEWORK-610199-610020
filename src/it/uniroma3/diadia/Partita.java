@@ -9,7 +9,7 @@ import it.uniroma3.diadia.giocatore.Giocatore;
  *
  * @author docente di POO/ matricole "610199" - "610020"
  * @see Stanza
- * @version versione.B
+ * @version versione.C
  */
 
 public class Partita {
@@ -17,14 +17,15 @@ public class Partita {
 	private Labirinto labirinto;
 	private boolean finita;
 	private Giocatore giocatore;
+	
 
 	/**
 	 * Crea una nuova partita
 	 * 
 	 */
-	public Partita() {
-		/* crea il labirinto */
-		this.labirinto = new Labirinto();
+	public Partita(Labirinto labirinto) {
+		/* inizializza il labirinto */
+		this.labirinto = labirinto;
 		this.finita = false;
 		/* crea il Giocatore */
 		this.giocatore = new Giocatore();
@@ -76,5 +77,9 @@ public class Partita {
 	
 	public boolean giocatoreIsVivo() {
 		return this.giocatore.getCfu()!=0;
+	}
+	
+	public void setLabirinto(Labirinto labirinto) {
+		this.labirinto = labirinto;
 	}
 }

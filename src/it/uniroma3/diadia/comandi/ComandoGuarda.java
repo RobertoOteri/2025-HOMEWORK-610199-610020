@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.ConfigurazioniIniziali;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
@@ -7,19 +8,16 @@ import it.uniroma3.diadia.Partita;
  * Classe che gestisce il comando guarda
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
-public class ComandoGuarda implements Comando {
+public class ComandoGuarda extends AbstractComando{
 
-	private IO io;
+	private static final String nome = ConfigurazioniIniziali.getNomeComandoGuarda();
 	
-	@Override
-	public void setIoConsole(IO io) {
-		this.io = io;
+	
+	public ComandoGuarda() {
+		super.setNome(nome);
 	}
-	@Override
-	public void setParametro(String parametro) {}
-	
 	@Override
 	/**
 	 * Metodo che stampa a video la descrizione della stanza e la descrizione del
@@ -28,18 +26,9 @@ public class ComandoGuarda implements Comando {
 	 * @param Partita
 	 */
 	public void esegui(Partita partita) {
-		this.io.mostraMessaggio(partita.getGiocatore().getDescrizione() + "\n\n" 
+		super.getIoConsole().mostraMessaggio(partita.getGiocatore().getDescrizione() + "\n\n" 
 	                      + partita.getLabirinto().getStanzaCorrente().getDescrizione());
 	}
-	
-	@Override
-	public String getNome() {
-		return "guarda";
-	}
-	
-	@Override
-	public String getParametro() {
-		return "";
-	}
+
 
 }

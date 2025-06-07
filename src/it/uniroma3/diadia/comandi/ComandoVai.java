@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.ConfigurazioniIniziali;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
@@ -9,21 +10,16 @@ import it.uniroma3.diadia.ambienti.Stanza;
  * stanza del labirinto.
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
-public class ComandoVai implements Comando {
+public class ComandoVai extends AbstractComando{
 	
-	private IO io;
-	private String direzione;
+	private static final String nome = ConfigurazioniIniziali.getNomeComandoVai();
 	
-	@Override
-	public void setIoConsole(IO io) {
-		this.io = io;
+	public ComandoVai() {
+		super.setNome(nome);
 	}
-    @Override
-    public void setParametro(String parametro) {
-    	this.direzione=parametro;
-    }
+
 	@Override
 	/**
 	 * Metodo che gestisce gli spostamenti del giocatore stampando a video un messaggio di errore
@@ -35,25 +31,17 @@ public class ComandoVai implements Comando {
 	public void esegui(Partita partita) {
 		Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 		Stanza prossimaStanza = null;
-		if(this.direzione==null) {
-			this.io.mostraMessaggio("Dove vouoi andare?\n");
+		if(super.getParametro()==null) {
+			super.getIoConsole().mostraMessaggio("Dove vouoi andare?\n");
 			return;
 		}
-		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.direzione);
+		prossimaStanza = stanzaCorrente.getStanzaAdiacente(super.getParametro());
 		if(prossimaStanza==null) {
-			this.io.mostraMessaggio("Non c'è nessuna stanza in questa direzione!!\n");
+			super.getIoConsole().mostraMessaggio("Non c'è nessuna stanza in questa direzione!!\n");
 			return;
 		}
 		partita.getLabirinto().setStanzaCorrente(prossimaStanza);
-		this.io.mostraMessaggio(prossimaStanza.toString());
+		super.getIoConsole().mostraMessaggio(prossimaStanza.toString());
 		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
-	}
-	@Override
-	public String getNome() {
-		return "vai";
-	}
-	@Override
-	public String getParametro() {
-		return this.direzione;
 	}
 }

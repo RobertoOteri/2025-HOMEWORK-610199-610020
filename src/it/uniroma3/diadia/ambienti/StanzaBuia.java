@@ -8,7 +8,7 @@ package it.uniroma3.diadia.ambienti;
  * 
  * @author docente di POO/ matricole "610199" - "610020"
  * @see Attrezzo
- * @version versione.B
+ * @version versione.C
  */
 
 public class StanzaBuia extends Stanza {

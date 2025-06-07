@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 class TestPartita {
@@ -12,14 +13,20 @@ class TestPartita {
 	private Partita partita1;
 	private Partita partita2;
 	private Partita partita3;
+	private Labirinto labirinto;
 	
 	@BeforeEach
 	public void setUp() {
-		partita1 = new Partita();
-		partita2 = new Partita();
-		partita3 = new Partita();
+		this.labirinto = new Labirinto.LabirintoBuilder()
+				.addStanza("Cucina")
+				.addStanza("Biblioteca")
+				.addStanzaIniziale("Cucina")
+				.addStanzaVincente("Biblioteca")
+				.getLabirinto();
+		partita1 = new Partita(this.labirinto);
+		partita2 = new Partita(this.labirinto);
+		partita3 = new Partita(this.labirinto);
 		partita2.getGiocatore().setCfu(0);
-		partita3.getLabirinto().setStanzaCorrente(partita3.getLabirinto().getStanzaVincente());
 	}
 
 	@Test
@@ -40,6 +47,7 @@ class TestPartita {
 	
 	@Test
 	public void testVinta() {
+		partita3.getLabirinto().setStanzaCorrente(partita3.getLabirinto().getStanzaVincente());
 		assertTrue(partita3.vinta());
 	}
 	

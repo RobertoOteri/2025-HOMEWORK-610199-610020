@@ -7,6 +7,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +19,21 @@ class TestComandoPrendi {
 	private Partita partita;
 	private ComandoPrendi comandoPrendi;
 	private String nomeAttrezzoNonPresente = "attrezzoNonPresente";
+	private Labirinto labirinto;
+	private Scanner scanner;
 	
 	@BeforeEach
 	public void setUp() {
+		scanner = new Scanner(System.in);
+		labirinto = new Labirinto.LabirintoBuilder()
+				.addStanza("cucina")
+				.addStanzaIniziale("cucina")
+				.addAttrezzo(nomeAttrezzoDaPrendere, 1, "cucina")
+				.getLabirinto();
 		this.comandoPrendi = new ComandoPrendi();
-		this.comandoPrendi.setIoConsole(new IOConsole());
-		this.partita = new Partita();
-		Attrezzo nuovoAttrezzo = new Attrezzo(nomeAttrezzoDaPrendere, 1);
-		this.partita.getLabirinto().getStanzaCorrente().addAttrezzo(nuovoAttrezzo);
+		this.comandoPrendi.setIoConsole(new IOConsole(scanner));
+		this.partita = new Partita(labirinto);
+
 		
 	}
 	@Test

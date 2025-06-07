@@ -9,7 +9,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * 
  * @author docente di POO/ matricole "610199" - "610020"
  * @see Attrezzo
- * @version versione.B
+ * @version versione.C
  */
 public class StanzaBloccata extends Stanza {
 
@@ -32,7 +32,7 @@ public class StanzaBloccata extends Stanza {
 	 */
 	public Stanza getStanzaAdiacente (String direzione) {
 		Stanza stanzaAdiacente = super.getStanzaAdiacente(direzione);
-		if(!stanzaAdiacente.hasAttrezzo(this.nomeAttrezzoPerSbloccare) && this.nomeDirezioneBloccata.equals(direzione)) {
+		if(!super.hasAttrezzo(this.nomeAttrezzoPerSbloccare) && this.nomeDirezioneBloccata.equals(direzione)) {
 			return this;
 		}
 		return stanzaAdiacente;	
@@ -49,21 +49,14 @@ public class StanzaBloccata extends Stanza {
 	public String toString() {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(super.getNome());
-		risultato.append("\nUscite: ");
-		for (String direzione : super.getDirezioni()) {
-			if (direzione != null) {
-				risultato.append(" " + direzione);
-				if(direzione.equals(this.nomeDirezioneBloccata)) {
-					risultato.append("Stanza bloccata, si può accedere tramite: " + this.nomeAttrezzoPerSbloccare);
-				}
-			}
+		risultato.append("\nUscite\n");
+		risultato.append(super.getDirezioni().toString());
+		if(super.getDirezioni().contains(this.nomeDirezioneBloccata)) {
+			risultato.append("\n" + this.nomeDirezioneBloccata + " è una direzione bloccata!!"
+					+ "\nTrovare l'attrezzo: " + this.nomeAttrezzoPerSbloccare + " e posarlo per accedervi");
 		}
 		risultato.append("\nAttrezzi nella stanza: ");
-		for (Attrezzo attrezzo : super.getAttrezzi()) {
-			if (attrezzo != null) {
-				risultato.append(attrezzo.toString() + " ");
-			}
-		}
+		risultato.append(super.getAttrezzi().values().toString());
 		return risultato.toString();
 	}
 

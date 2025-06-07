@@ -9,9 +9,10 @@ import it.uniroma3.diadia.IO;
  * "vai" e parametro "nord").
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 public interface FabbricaDiComandi {
 
-	public Comando costruisciComando(String istruzione, IO io);
+	public AbstractComando costruisciComando(String istruzione, IO io);
+	
 }

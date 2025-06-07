@@ -10,7 +10,7 @@ import java.util.Scanner;
  * "vai" e parametro "nord").
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 
 public interface Comando {

@@ -1,0 +1,10 @@
+Stanze: Atrio, Corridoio, Biblioteca, Cucina, Giardino
+Inizio: Atrio
+Vincente: Biblioteca
+Bloccate: Laboratorio est chiave
+Buie: Bagni torcia
+Attrezzi: torcia 2 Atrio, mappa 1 Corridoio, chiave 1 Cucina
+Uscite: Atrio est Corridoio, Corridoio ovest Atrio, Corridoio nord Laboratorio
+Uscite: Laboratorio sud Corridoio, Corridoio sud Bagni, Bagni nord Corridoio
+Uscite: Laboratorio est Biblioteca, Biblioteca ovest Laboratorio, Bagni est Giardino
+Uscite: Giardino ovest Bagni, Giardino sud Cucina, Cucina nord Giardino

@@ -1,15 +1,17 @@
 package it.uniroma3.diadia.giocatore;
 
+import it.uniroma3.diadia.ConfigurazioniIniziali;
+
 /**
  * Classe che gestisce il giocatore della partita, gestisce i Cfu del giocatore,
  * imposta i Cfu iniziali e gestice la borsa del giocatore
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 public class Giocatore {
 
-	static final private int CFU_INIZIALI = 20;
+	static final private int CFU_INIZIALI = ConfigurazioniIniziali.getCFU();
 	private int cfu = CFU_INIZIALI;
 	private Borsa borsa;
 

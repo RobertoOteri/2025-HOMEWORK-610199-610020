@@ -36,7 +36,7 @@ class TestStanzaBloccata {
 	
 	@Test
 	public void testStanzaNordConPasspartout() {
-		this.stanzaNord.addAttrezzo(passpartout);
+		this.stanzabloccata.addAttrezzo(passpartout);
 		assertEquals(this.stanzaNord.getNome(), this.stanzabloccata.getStanzaAdiacente("nord").getNome());
 	}
 	

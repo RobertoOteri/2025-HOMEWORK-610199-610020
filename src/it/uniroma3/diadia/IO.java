@@ -5,7 +5,7 @@ package it.uniroma3.diadia;
  * programma
  * 
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 public interface IO {
 	

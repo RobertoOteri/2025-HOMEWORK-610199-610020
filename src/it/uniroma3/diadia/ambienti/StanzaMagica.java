@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.ambienti;
 
+import it.uniroma3.diadia.ConfigurazioniIniziali;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
@@ -9,11 +10,11 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * 
  * @author docente di POO/ matricole "610199" - "610020"
  * @see Attrezzo
- * @version versione.B
+ * @version versione.C
  */
 public class StanzaMagica extends Stanza {
 	
-	final static private int SOGLIA_MAGICA_DEFAULT = 3;
+	final static private int SOGLIA_MAGICA_DEFAULT = ConfigurazioniIniziali.getSogliaMagicaDefault();
 	private int contatoreAttrezziPosati;
 	private int sogliaMagica;
 	
@@ -52,7 +53,7 @@ public class StanzaMagica extends Stanza {
 	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
 	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-	if(this.contatoreAttrezziPosati>=this.sogliaMagica-1) {
+	if(this.contatoreAttrezziPosati>=this.sogliaMagica) {
 		attrezzo = this.modificaAttrezzo(attrezzo);
 	}
 	boolean vero = super.addAttrezzo(attrezzo);
@@ -60,5 +61,20 @@ public class StanzaMagica extends Stanza {
 		this.contatoreAttrezziPosati++;
 	}
 	return vero;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder risultato = new StringBuilder();
+		risultato.append(super.getNome());
+		risultato.append("\nUscite: ");
+		risultato.append(super.getMapStanzeAdiacenti().keySet().toString());
+		risultato.append("\nAttrezzi nella stanza: ");
+		risultato.append(super.getAttrezzi().values().toString());
+		if(super.getPersonaggio()!=null) {
+			risultato.append(super.getPersonaggio().getDescrizione());
+		}
+		risultato.append("\nQuesta stanza emana una strana aura.......\n");
+		return risultato.toString();
 	}
 }

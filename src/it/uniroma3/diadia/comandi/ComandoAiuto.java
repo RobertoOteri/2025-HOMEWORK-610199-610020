@@ -1,27 +1,33 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import it.uniroma3.diadia.ConfigurazioniIniziali;
 import it.uniroma3.diadia.IO;
 
 /**
  * Classe che consente all'utente di capire quali comandi può eseguire.
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
-public class ComandoAiuto implements Comando{
+public class ComandoAiuto extends AbstractComando{
 	
-	private IO io;
+	private static final String nome = ConfigurazioniIniziali.getNomeComandoAiuto();
 
-	static final private String[] elencoComandi = { "vai", "aiuto", "fine", "posa", "prendi", "guarda" };
+	static  private List<String> elencoComandi;
 	
-	
-	@Override
-	public void setIoConsole(IO io) {
-		this.io = io;
+	public ComandoAiuto() {
+		
+		super.setNome(nome);
+		this.elencoComandi = new ArrayList<String>();
+		for(Comandi c : Comandi.values()) {
+			this.elencoComandi.add(c.name());
+		}
 	}
-	@Override
-	public void setParametro(String parametro) {}
 	
 	@Override
 	/**
@@ -31,20 +37,10 @@ public class ComandoAiuto implements Comando{
 	 */
 	public void esegui(Partita partita) {
 		String returnString  = "";
-		for(int i=0; i<this.elencoComandi.length; i++) {
-			returnString = returnString + elencoComandi[i] +", ";
+		for(int i=0; i<this.elencoComandi.size(); i++) {
+			returnString = returnString + this.elencoComandi.get(i) +", ";
 		}
-		this.io.mostraMessaggio(returnString);
-	}
-	
-	@Override
-	public String getNome() {
-		return "aiuto";
-	}
-	
-	@Override
-	public String getParametro() {
-		return "";
+		super.getIoConsole().mostraMessaggio(returnString);
 	}
 	
 }

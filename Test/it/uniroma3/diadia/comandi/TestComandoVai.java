@@ -1,7 +1,10 @@
 package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertTrue;
+
+import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +13,7 @@ import it.uniroma3.diadia.DiaDia;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.ambienti.Labirinto;
 
 public class TestComandoVai {
 	
@@ -19,28 +23,33 @@ public class TestComandoVai {
 	private Partita partita;
 	private Comando comandoVai;
 	private Stanza partenza;
+	private Labirinto labirinto;
+	private Scanner scanner;
 	
 
 	@Before
 	public void setUp() throws Exception {
+		scanner = new Scanner(System.in);
+		this.labirinto = new Labirinto.LabirintoBuilder()
+				.addStanza(NOME_STANZA_PARTENZA)
+				.addStanzaIniziale(NOME_STANZA_PARTENZA)
+				.addStanza("Destinazione")
+				.addAdiacenza(NOME_STANZA_PARTENZA, "Destinazione", NORD)
+				.getLabirinto();
 		this.comandoVai = new ComandoVai();
-		this.comandoVai.setIoConsole(new IOConsole());
-		this.partita = new Partita();
-		this.partenza = new Stanza(NOME_STANZA_PARTENZA);
-		this.partita.getLabirinto().setStanzaCorrente(this.partenza);
+		this.comandoVai.setIoConsole(new IOConsole(scanner));
+		this.partita = new Partita(labirinto);
 	}
 
 	@Test
 	public void testVaiStanzaNonPresente() {
-		this.comandoVai.setParametro(NORD);
+		this.comandoVai.setParametro("sud");
 		this.comandoVai.esegui(this.partita);
 		assertEquals(NOME_STANZA_PARTENZA, this.partita.getLabirinto().getStanzaCorrente().getNome());
 	}
 	
 	@Test
 	public void testVaiStanzaPresente() {
-		Stanza destinazione = new Stanza("Destinazione");
-		this.partenza.impostaStanzaAdiacente(NORD, destinazione);
 		this.comandoVai.setParametro(NORD);
 		this.comandoVai.esegui(partita);
 		assertEquals("Destinazione", this.partita.getLabirinto().getStanzaCorrente().getNome());
@@ -48,9 +57,7 @@ public class TestComandoVai {
 	
 	@Test
 	public void testVaiStanzaPresenteInDirezioneSbagliata() {
-		Stanza destinazione = new Stanza("Destinazione");
-		this.partenza.impostaStanzaAdiacente("sud", destinazione);
-		this.comandoVai.setParametro(NORD);
+		this.comandoVai.setParametro("sud");
 		this.comandoVai.esegui(partita);
 		assertEquals(NOME_STANZA_PARTENZA, this.partita.getLabirinto().getStanzaCorrente().getNome());
 	}

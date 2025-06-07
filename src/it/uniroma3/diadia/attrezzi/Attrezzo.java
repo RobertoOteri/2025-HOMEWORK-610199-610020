@@ -8,9 +8,9 @@ import it.uniroma3.diadia.ambienti.Stanza;
  *
  * @author docente di POO/ matricole "610199" - "610020"
  * @see Stanza
- * @version versione.B
+ * @version versione.C
  */
-public class Attrezzo {
+public class Attrezzo implements Comparable<Attrezzo>{
 
 	private String nome;
 	private int peso;
@@ -52,5 +52,25 @@ public class Attrezzo {
 	public String toString() {
 		return this.getNome() + " (" + this.getPeso() + "kg)";
 	}
+	
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
+	@Override
+	public boolean equals(Object o) {
+		Attrezzo that = (Attrezzo) o;
+		return that.getNome().equals(this.nome) && that.getPeso() == this.peso;
+	}
+
+	@Override
+	public int compareTo(Attrezzo o) {
+		int ritorno = this.peso - o.getPeso();
+		if(ritorno==0) {
+			ritorno = this.nome.compareTo(o.getNome());
+		}
+		return ritorno;
+	}
+	
+
 
 }

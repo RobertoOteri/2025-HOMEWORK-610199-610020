@@ -3,11 +3,14 @@ package it.uniroma3.diadia.comandi;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Scanner;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
@@ -17,12 +20,19 @@ public class TestComandoPosa {
 	private static final String ATTREZZO_DA_POSARE = "AttrezzoDaPosare";
 	private ComandoPosa comandoPosa;
 	private Partita partita;
+	private Labirinto labirinto;
+	private Scanner scanner;
 
 	@Before
 	public void setUp() throws Exception {
+		scanner = new Scanner(System.in);
+		labirinto = new Labirinto.LabirintoBuilder()
+				.addStanza("Cucina")
+				.addStanzaIniziale("Cucina")
+				.getLabirinto();
 		this.comandoPosa = new ComandoPosa();
-		this.comandoPosa.setIoConsole(new IOConsole());
-		this.partita = new Partita();
+		this.comandoPosa.setIoConsole(new IOConsole(scanner));
+		this.partita = new Partita(labirinto);
 		Borsa borsa = partita.getGiocatore().GetBorsa();
 		Attrezzo attrezzoNuovo = new Attrezzo(ATTREZZO_DA_POSARE, 1);
 		borsa.addAttrezzo(attrezzoNuovo);

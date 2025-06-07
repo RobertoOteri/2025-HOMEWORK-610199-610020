@@ -8,16 +8,19 @@ class TestLabirinto {
 
 	private Labirinto labirinto;
 	private Stanza stanza;
+	private Stanza stanzaVincente;
 	
 	@BeforeEach
 	public void setUp() {
 		labirinto = new Labirinto();
 		stanza = new Stanza("Laboratorio Campus");
+		stanzaVincente = new Stanza("Biblioteca");
 		labirinto.setStanzaCorrente(stanza);
+		labirinto.setStanzaVincente(stanzaVincente);
 	}
 	
 	@Test
-	public void testStanzaVincenteNonNulla() {
+	public void testStanzaVincenteNonNull() {
 		assertNotNull(labirinto.getStanzaVincente());
 	}
 	

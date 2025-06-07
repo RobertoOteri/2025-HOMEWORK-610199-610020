@@ -1,0 +1,6 @@
+Stanze: Atrio, Corridoio, Biblioteca, Cucina
+Inizio: Atrio
+Vincente: Biblioteca
+Attrezzi: chiave 1 Atrio, mappa 1 Corridoio
+Uscite: Atrio est Corridoio, Corridoio ovest Atrio, Corridoio nord Biblioteca
+Uscite: Biblioteca sud Corridoio, Corridoio sud Cucina, Cucina nord Corridoio

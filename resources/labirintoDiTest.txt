@@ -1,0 +1,5 @@
+Stanze: N12, Biblioteca, N10
+Inizio: N10
+Vincente: Biblioteca
+Attrezzi: osso 5 N10
+Uscite: N10 nord Biblioteca, Biblioteca sud N10

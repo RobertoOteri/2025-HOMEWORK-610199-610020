@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.ConfigurazioniIniziali;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
@@ -7,19 +8,15 @@ import it.uniroma3.diadia.Partita;
  * Classe che gestisce il comandoNonValido
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
-public class ComandoNonValido implements Comando{
-
-	private IO io;
+public class ComandoNonValido extends AbstractComando{
 	
-	@Override
-	public void setIoConsole(IO io) {
-		this.io = io;
+	private static final String nome = ConfigurazioniIniziali.getNomeComandoNonValido();
+	
+	public ComandoNonValido() {
+		super.setNome(nome);
 	}
-	@Override
-	public void setParametro(String parametro) {}
-	
 	@Override
 	/**
 	 * Metodo che stampa a video "Il comando non è valido" quando l'utente isserice
@@ -28,16 +25,6 @@ public class ComandoNonValido implements Comando{
 	 * @param Partita
 	 */
 	public void esegui(Partita partita) {
-		this.io.mostraMessaggio("Il comando inserito non è valido!!\n");
-	}
-
-	@Override
-	public String getNome() {
-		return "";
-	}
-	
-	@Override
-	public String getParametro() {
-		return "";
+		super.getIoConsole().mostraMessaggio("Il comando inserito non è valido!!\n");
 	}
 }

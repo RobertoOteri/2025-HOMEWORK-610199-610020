@@ -10,7 +10,7 @@ import it.uniroma3.diadia.IO;
  * "vai" e parametro "nord").
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 	
@@ -22,11 +22,11 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 	 * @param La Stringa di istruzione scritta dall'utente in input, la console di I/O
 	 * @return il comando creato
 	 */
-	public Comando costruisciComando(String istruzione, IO io) {
+	public AbstractComando costruisciComando(String istruzione, IO io) {
 		Scanner scannerDiParole = new Scanner(istruzione);
 		String nomeComando = null;
 		String parametro = null;
-		Comando comando = null;
+		AbstractComando comando = null;
 		if(scannerDiParole.hasNext()) {
 			nomeComando = scannerDiParole.next();
 		}

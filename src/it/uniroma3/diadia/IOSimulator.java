@@ -1,28 +1,28 @@
 package it.uniroma3.diadia;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe che si occupa di salvare in degli array gli ingressi di Input e Output dell'intero
  * programma
  * 
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 
 public class IOSimulator implements IO {
 	
-	private String[] righeDaLeggere;
-	private String[] messaggiProdotti;
+	private List<String> righeDaLeggere;
+	private List<String> messaggiProdotti;
 	private int indiceRigaDaLeggere;
-	private int indiceMemorizzaMessaggio;
 	private int indiceMostraMessaggio;
 
 	
-	public IOSimulator(String[] righeDaLeggere) {
+	public IOSimulator(List<String> righeDaLeggere) {
 		this.righeDaLeggere = righeDaLeggere;
-		this.messaggiProdotti = new String[100];
+		this.messaggiProdotti = new ArrayList<String>();
 		this.indiceRigaDaLeggere=0;
-		this.indiceMemorizzaMessaggio=0;
 		this.indiceMostraMessaggio=0;
 	}
 	@Override
@@ -33,9 +33,7 @@ public class IOSimulator implements IO {
 	 * 
 	 */
 	public void mostraMessaggio(String messaggio) {
-		this.messaggiProdotti[this.indiceMemorizzaMessaggio]=messaggio;
-		this.indiceMemorizzaMessaggio++;
-		
+		this.messaggiProdotti.add(messaggio);
 	}
 
 	@Override
@@ -47,10 +45,10 @@ public class IOSimulator implements IO {
 	 * 
 	 */
 	public String leggiRiga() {
-		String rigaLetta = this.righeDaLeggere[this.indiceRigaDaLeggere];
+		String rigaLetta = this.righeDaLeggere.get(this.indiceRigaDaLeggere);
 		this.indiceRigaDaLeggere++;
 		return rigaLetta;
-	}
+	} 
 	
 	/**
 	 * Metodo che si occupa di trovare nell'array la stringa contenente il messaggio da mostrare 
@@ -60,7 +58,7 @@ public class IOSimulator implements IO {
 	 * 
 	 */
 	public String messaggioCorrente() {
-		String messaggio = this.messaggiProdotti[this.indiceMostraMessaggio];
+		String messaggio = this.messaggiProdotti.get(this.indiceMostraMessaggio);
 		this.indiceMostraMessaggio++;
 		return messaggio;
 	}
@@ -72,10 +70,10 @@ public class IOSimulator implements IO {
 	 * 
 	 */
 	public boolean hasNextMessaggio() {
-		return this.indiceMostraMessaggio < this.indiceMemorizzaMessaggio;
+		return this.indiceMostraMessaggio < this.messaggiProdotti.size();
 	}
 	
-	public String[] getMessaggiProdotti() {
+	public List<String> getMessaggiProdotti() {
 		return this.messaggiProdotti;
 	}
 

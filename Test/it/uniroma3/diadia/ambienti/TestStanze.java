@@ -13,11 +13,13 @@ class TestStanze {
 	private Stanza s1;
 	private Stanza s2;
 	private Attrezzo a1;
+	private Attrezzo a2;
 	@BeforeEach 
 	public void setUp() {
 		s1 = new Stanza("Studio");
 		s2 = new Stanza("Biblioteca");
 		a1 = new Attrezzo("spada", 5);
+		a2 = new Attrezzo("spada", 5);
 		s1.impostaStanzaAdiacente("nord", s2);
 		s1.addAttrezzo(a1);
 	}
@@ -60,15 +62,25 @@ class TestStanze {
 	}
 	@Test
 	public void testGetDirezioniContieneNord () {
-		assertEquals("nord", s1.getDirezioni()[0]);
+		assertEquals("nord", s1.getDirezioni().toArray()[0]);
 	}
 	@Test
 	public void testGetDirezioniNonContieneSud1 () {
-		assertFalse("sud"==s1.getDirezioni()[0]);
+		assertFalse("sud"==s1.getDirezioni().toArray()[0]);
 	}
 	@Test
 	public void testGetDirezioniNonVuoto2 () {
 		assertNotNull(s2.getDirezioni());
 	}
+	@Test
+	public void testRemoveAttrezzoTrue() {
+		assertTrue(this.s1.removeAttrezzo(a1));
+	}
 	
+	@Test
+	public void testRemoveAttrezzoA2() {
+		assertTrue(this.s1.removeAttrezzo(a2));
+		
+	}
+
 }

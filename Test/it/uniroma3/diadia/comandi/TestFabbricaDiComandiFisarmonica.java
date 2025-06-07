@@ -3,28 +3,33 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.comandi.Comando;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestFabbricaDiComandiFisarmonica {
 
 	private FabbricaDiComandiFisarmonica fabbricaDiComandi;
-	private Comando comandoVai;
-	private Comando comandoAiuto;
-	private Comando comandoFine;
-	private Comando comandoPrendi;
-	private Comando comandoPosa;
-	private Comando comandoGuarda;
+	private AbstractComando comandoVai;
+	private AbstractComando comandoAiuto;
+	private AbstractComando comandoFine;
+	private AbstractComando comandoPrendi;
+	private AbstractComando comandoPosa;
+	private AbstractComando comandoGuarda;
+	private Scanner scanner;
 	
 	@BeforeEach
 	public void setUp() {
+		this.scanner = new Scanner(System.in);
 		this.fabbricaDiComandi = new FabbricaDiComandiFisarmonica();
-		comandoVai = this.fabbricaDiComandi.costruisciComando("vai", new IOConsole());
-		comandoAiuto = this.fabbricaDiComandi.costruisciComando("aiuto", new IOConsole());
-		comandoFine = this.fabbricaDiComandi.costruisciComando("fine", new IOConsole());
-		comandoPrendi = this.fabbricaDiComandi.costruisciComando("prendi", new IOConsole());
-		comandoPosa = this.fabbricaDiComandi.costruisciComando("posa", new IOConsole());
-		comandoGuarda = this.fabbricaDiComandi.costruisciComando("guarda", new IOConsole());
+		comandoVai = this.fabbricaDiComandi.costruisciComando("vai", new IOConsole(scanner));
+		comandoAiuto = this.fabbricaDiComandi.costruisciComando("aiuto", new IOConsole(scanner));
+		comandoFine = this.fabbricaDiComandi.costruisciComando("fine", new IOConsole(scanner));
+		comandoPrendi = this.fabbricaDiComandi.costruisciComando("prendi", new IOConsole(scanner));
+		comandoPosa = this.fabbricaDiComandi.costruisciComando("posa", new IOConsole(scanner));
+		comandoGuarda = this.fabbricaDiComandi.costruisciComando("guarda", new IOConsole(scanner));
 		comandoVai.setParametro("nord");
 		comandoPrendi.setParametro("spada");
 		comandoPosa.setParametro("osso");

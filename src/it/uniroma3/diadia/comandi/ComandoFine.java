@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.ConfigurazioniIniziali;
 import it.uniroma3.diadia.IO;
 
 import it.uniroma3.diadia.Partita;
@@ -8,20 +9,17 @@ import it.uniroma3.diadia.Partita;
  * Classe che gestisce il comando fine 
  *
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 
-public class ComandoFine implements Comando {
+public class ComandoFine extends AbstractComando{
 
-	private IO io;
 	
-	@Override
-	public void setIoConsole(IO io) {
-		this.io = io;
+	private static final String nome = ConfigurazioniIniziali.getNomeComandoFine();
+	
+	public ComandoFine() {
+		super.setNome(nome);
 	}
-	@Override
-	public void setParametro(String parametro) {}
-	
 	@Override
 	/**
 	 * Metodo che stampa a video il messaggio di ringraziamento 
@@ -30,17 +28,7 @@ public class ComandoFine implements Comando {
 	 */
 	public void esegui(Partita partita) {
 		partita.setFinita();
-		this.io.mostraMessaggio("Grazie di aver giocato!");
-	}
-	
-	@Override
-	public String getNome() {
-		return "fine";
-	}
-	
-	@Override
-	public String getParametro() {
-		return "";
+		super.getIoConsole().mostraMessaggio("Grazie di aver giocato!");
 	}
 	
 }

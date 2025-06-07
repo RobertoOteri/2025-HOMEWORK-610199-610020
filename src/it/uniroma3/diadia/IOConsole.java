@@ -7,11 +7,19 @@ import java.util.Scanner;
  * programma
  * 
  * @author docente di POO/ matricole "610199" - "610020"
- * @version versione.B
+ * @version versione.C
  */
 
 public class IOConsole implements IO {
-
+	
+	private Scanner scanner;
+	
+	
+	public IOConsole(Scanner scanner) {
+		this.scanner=scanner;
+	}
+	
+	
 	@Override
 	/**
 	 * Metodo che si occupa di stampare a video una stringa
@@ -31,8 +39,7 @@ public class IOConsole implements IO {
 	 * 
 	 */
 	public String leggiRiga() {
-		Scanner scannerDiLinee = new Scanner(System.in);
-		String riga = scannerDiLinee.nextLine();
+		String riga = scanner.nextLine();
 		return riga;
 	}
 }
